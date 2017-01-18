@@ -2,67 +2,55 @@
 using System.Collections;
 
 public class Pathfinding : MonoBehaviour {
-    public GameObject target;
-    public float moveSpeed;
-    public float distance = 999f;
+    public GameObject target; 
     public GameObject targetObject;
-   
+    public float distance = 999;  
     
 
-    // Use this for initialization
-    void Start () {
-        Find();
-    }
-    
-    // Update is called once per frame
-    void FixedUpdate () {
 
-        if (targetObject != null)
-        {
-            GoTo(targetObject.transform);
-        }
-        else
-            Find();       
-        
-    }
-    
-    void GoTo(Transform target)
+    void Update()
     {
-        distance = Vector3.Distance(transform.position, target.position);
-        
-        transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        if(targetObject!= null)
+        distance = Vector3.Distance(transform.position, targetObject.transform.position);
         
     }
-    public void Find()
+   
+    public void Find(float viewRange)
     {
         targetObject = null;
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 5f);
-        Collider2D nearest = cols[0];
-        float Idistance, Ndistance;
-        foreach(Collider2D Icol in cols)
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, viewRange);
+        if (cols != null)
         {
-            if (Icol.gameObject.tag == target.tag)
+            Collider2D nearest = cols[0];
+            float Idistance, Ndistance;
+            foreach (Collider2D Icol in cols)
             {
-                            
-                Idistance = Vector3.Distance(transform.position, Icol.transform.position);
-                Ndistance = Vector3.Distance(transform.position, nearest.transform.position);
-                if(Idistance < Ndistance)
+                if (Icol.gameObject.tag == target.tag)
                 {
-                    nearest = Icol; 
-                }
 
-                if (nearest.tag == target.tag)
-                {
-                    targetObject = nearest.gameObject;
-                    Debug.Log(targetObject.name);
-                }
+                    Idistance = Vector3.Distance(transform.position, Icol.transform.position);
+                    Ndistance = Vector3.Distance(transform.position, nearest.transform.position);
+                    if (Idistance < Ndistance)
+                    {
+                        nearest = Icol;
+                    }
 
+                    if (nearest.tag == target.tag)
+                    {
+                        targetObject = nearest.gameObject;
+                        
+
+                    }
+
+                }
             }
         }
 
         
        
     }
+
+   
 
    
 }

@@ -106,8 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1000010780188802, guid: 528075e900e6d704da47db895a633f4f, type: 2}
-  moveSpeed: 2
-  distance: 0
   targetObject: {fileID: 0}
 --- !u!114 &114000011667901096
 MonoBehaviour:
@@ -131,8 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fe4b8f21c5f8945ad6d45de2b5509e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  attackRange: 0.7
+  moveSpeed: 3
+  attackRange: 1
+  viewRange: 5
 --- !u!212 &212000011386080014
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -52,6 +52,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013727554886}
   - 61: {fileID: 61000010621453226}
+  - 114: {fileID: 114000011792290746}
+  - 114: {fileID: 114000014137013208}
+  - 114: {fileID: 114000012627389086}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -91,6 +94,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013605787834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011295025818}
+  m_Layer: 0
+  m_Name: Cannon
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4000010771031258
 Transform:
   m_ObjectHideFlags: 1
@@ -104,6 +122,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013727554886}
   m_RootOrder: 1
+--- !u!4 &4000011295025818
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013605787834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.38, y: 0.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013727554886}
+  m_RootOrder: 4
 --- !u!4 &4000012117143446
 Transform:
   m_ObjectHideFlags: 1
@@ -150,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011808864478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73715043, y: 1.2580925, z: -0.0078125}
+  m_LocalPosition: {x: -0.83, y: -1.87, z: -0.0078125}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -158,6 +189,7 @@ Transform:
   - {fileID: 4000010771031258}
   - {fileID: 4000012117143446}
   - {fileID: 4000013708019674}
+  - {fileID: 4000011295025818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!61 &61000010621453226
@@ -174,6 +206,45 @@ BoxCollider2D:
   m_Offset: {x: -0.023508864, y: 0.19102363}
   serializedVersion: 2
   m_Size: {x: 0.95298237, y: 0.7976297}
+--- !u!114 &114000011792290746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011808864478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b79ec21111f1c1469be7be020afe32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRange: 10
+  attackSpeed: 2
+  projectile: {fileID: 1000013114634526, guid: 5aa1ace13bbafc34da594b21be861d83, type: 2}
+--- !u!114 &114000012627389086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011808864478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585764604f526554f93224a08b3f7ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014137013208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011808864478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7250a0d83f2e4394c9da80b8f01595c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1000010780188802, guid: 528075e900e6d704da47db895a633f4f, type: 2}
+  targetObject: {fileID: 0}
+  distance: 999
 --- !u!212 &212000010723647462
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -202,7 +273,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -997
   m_Sprite: {fileID: 21300000, guid: 74bd2fd658231f64c9fabe89541c133e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -268,7 +339,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -11
+  m_SortingOrder: -998
   m_Sprite: {fileID: 21300000, guid: f8109cfdf21b9b94bbf1b7b65fd59875, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

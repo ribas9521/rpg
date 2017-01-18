@@ -5,6 +5,8 @@ public class MovementController : MonoBehaviour {
     Animator anim;
     public float moveSpeed;
     public float attackRange;
+    public float viewRange;
+    
     GameObject nearEnemie;
     float h;
     float v;
@@ -23,19 +25,26 @@ public class MovementController : MonoBehaviour {
     void Awake () {
         anim = GetComponent<Animator>();
         pathfinding = GetComponent<Pathfinding>();
-        damageController = GetComponent<DamageController>();
+        damageController = GetComponent<DamageController>();        
                
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {        
+	void Update () {        
         //Walking();
         Direction();       
         MoveDetection();        
         if(pathfinding.distance <=0.7f)
         Attack();
-        
-	}
+
+        if (pathfinding.targetObject != null)
+        {
+            GoTo(pathfinding.targetObject.transform);
+        }
+        else
+            pathfinding.Find(viewRange);
+
+    }
 
 	void Walking()
 	{
@@ -70,6 +79,12 @@ public class MovementController : MonoBehaviour {
         oldX = curX;
         oldY = curY;
         Animate();       
+    }
+
+    void GoTo(Transform target)
+    {        
+
+        transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
     }
 
     void Animate()

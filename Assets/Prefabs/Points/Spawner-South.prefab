@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010368866810}
   - 114: {fileID: 114000012544910914}
+  - 114: {fileID: 114000010856429190}
   m_Layer: 0
   m_Name: Spawner-South
   m_TagString: Untagged
@@ -33,13 +34,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012537251980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10, y: -1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000010856429190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012537251980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807ede7fe010cd74ba3fe5de9e5c8a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnables:
+  - {fileID: 1000010780188802, guid: 528075e900e6d704da47db895a633f4f, type: 2}
+  timer: 1
+  quantity: 10
 --- !u!114 &114000012544910914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,6 +67,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585764604f526554f93224a08b3f7ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity: 10
-  monsters:
-  - {fileID: 1000010780188802, guid: 528075e900e6d704da47db895a633f4f, type: 2}

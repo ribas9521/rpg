@@ -274,7 +274,7 @@ MonoBehaviour:
   point4: {fileID: 1000014202619102, guid: 960b364ef488e9248aeed59333567975, type: 2}
   point5: {fileID: 1000012799713592, guid: f64e508dc3d79684ca1c8e6e97517862, type: 2}
   point6: {fileID: 1000011700992174, guid: b60ee29fbff746a4dbe232165df8bda4, type: 2}
-  moveSpeed: 2
+  moveSpeed: 3
 --- !u!212 &212000010946820222
 SpriteRenderer:
   m_ObjectHideFlags: 1

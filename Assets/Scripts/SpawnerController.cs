@@ -4,23 +4,22 @@ using System.Collections.Generic;
 
 public class SpawnerController : MonoBehaviour {
 
-    public int quantity;
-    public List<GameObject> monsters;
-   
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(Spawn());
-	}
-	IEnumerator Spawn()
+    
+	public IEnumerator Spawn(List<GameObject> spawnables, float timer, int quantity, Vector3 position)
     {
         int i = 0;
         while (i < quantity)
         {
             
-            GameObject monsterClone = (GameObject)Instantiate(monsters[0], transform.position, Quaternion.identity);
+            GameObject monsterClone = (GameObject)Instantiate(spawnables[0], position, Quaternion.identity);
             i++;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(timer);
         }
     }
 
+    public GameObject Spawn(GameObject spawnable, Vector3 position)
+    {
+       GameObject spawned = (GameObject)Instantiate(spawnable, position, Quaternion.identity);
+       return spawned;
+    }
 }
