@@ -1,8 +1,8 @@
-﻿<Properties StartupItem="RPG.CSharp.csproj">
+﻿<Properties StartupItem="rpg.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MovementController.cs">
     <Files>
-      <File FileName="Assets\Scripts\MovementController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MovementController.cs" Line="95" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
