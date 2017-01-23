@@ -11,7 +11,7 @@ public class Pathfinding : MonoBehaviour {
     void Update()
     {
         if(targetObject!= null)
-        distance = Vector3.Distance(transform.position, targetObject.transform.position);
+            distance = Vector3.Distance(transform.position, targetObject.transform.position);
         
     }
    

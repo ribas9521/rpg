@@ -14,6 +14,7 @@ public class MovementController : MonoBehaviour
     int direction = 0;
     Pathfinding pathfinding;
     DamageController damageController;
+    StatusController status;
 
 
     float oldX, oldY;
@@ -28,6 +29,7 @@ public class MovementController : MonoBehaviour
         anim = GetComponent<Animator>();
         pathfinding = GetComponent<Pathfinding>();
         damageController = GetComponent<DamageController>();
+        status = GetComponent<StatusController>();
 
     }
 
@@ -140,8 +142,11 @@ public class MovementController : MonoBehaviour
 
 
     public void Harm()
-    {
-        
-            damageController.TakeDamage(pathfinding.targetObject, 0);
+    {        if (pathfinding.targetObject != null)
+        {
+            damageController.TakeDamage(pathfinding.targetObject, status.pAttack, status.mAttack, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
     }
+
+
 }

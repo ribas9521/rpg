@@ -41,14 +41,18 @@ public class ArrowController : MonoBehaviour {
     {
        
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+       
     }
 
     public void Harm()
     {
         if (pathfinding.distance <= 0.5f)
         {
-            damageController.TakeDamage(pathfinding.targetObject, 0);
-            SelfDestruction();
+            if (pathfinding.targetObject != null)
+            {
+                damageController.TakeDamage(pathfinding.targetObject, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                SelfDestruction();
+            }
         }
        
     }

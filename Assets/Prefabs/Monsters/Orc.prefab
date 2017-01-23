@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 50000012889236172}
   - component: {fileID: 58000011429978354}
   - component: {fileID: 58000011474264620}
+  - component: {fileID: 114163273533718306}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Monster
@@ -132,8 +133,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010780188802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5001874, y: 2.2078974, z: 0}
-  m_LocalScale: {x: -1.2, y: 1.2, z: 1}
+  m_LocalPosition: {x: 6.62, y: -0.01884836, z: 0}
+  m_LocalScale: {x: -1.7, y: 1.7, z: 1}
   m_Children:
   - {fileID: 4000010345504568}
   - {fileID: 4000011232743086}
@@ -221,7 +222,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010780188802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -278,6 +279,29 @@ MonoBehaviour:
   point5: {fileID: 1000012799713592, guid: f64e508dc3d79684ca1c8e6e97517862, type: 2}
   point6: {fileID: 1000011700992174, guid: b60ee29fbff746a4dbe232165df8bda4, type: 2}
   moveSpeed: 2
+  slider: {fileID: 1594911059326046, guid: e10529d91f617794eb4749141d9cd05d, type: 2}
+--- !u!114 &114163273533718306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010780188802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df7954479c8099478979a702bbbe8cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pAttack: 0
+  mAttack: 0
+  pDefense: 0
+  mDefense: 0
+  hPoints: 10
+  mPoints: 0
+  criticalChance: 0
+  criticalMultiplier: 0
+  evasionChance: 0
+  accuracy: 0
+  blockChance: 2
 --- !u!212 &212000010946820222
 SpriteRenderer:
   m_ObjectHideFlags: 1
