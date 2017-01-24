@@ -15,6 +15,7 @@ public class MovementController : MonoBehaviour
     Pathfinding pathfinding;
     DamageController damageController;
     StatusController status;
+    ParticleSystem particles;
 
 
     float oldX, oldY;
@@ -30,6 +31,7 @@ public class MovementController : MonoBehaviour
         pathfinding = GetComponent<Pathfinding>();
         damageController = GetComponent<DamageController>();
         status = GetComponent<StatusController>();
+        particles = transform.FindChild("Sparks").GetComponent<ParticleSystem>();
 
     }
 
@@ -144,6 +146,7 @@ public class MovementController : MonoBehaviour
     public void Harm()
     {        if (pathfinding.targetObject != null)
         {
+            particles.Play();
             damageController.TakeDamage(pathfinding.targetObject, status.pAttack, status.mAttack, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
     }

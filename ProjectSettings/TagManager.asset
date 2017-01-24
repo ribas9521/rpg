@@ -8,6 +8,8 @@ TagManager:
   - Tower
   - Monster
   - Crystal
+  - LargeTile
+  - LevelChanger
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 141835457
+    locked: 0
+  - name: TowerFront
+    uniqueID: 1270888615
+    locked: 0
+  - name: Monster
+    uniqueID: 898395347
+    locked: 0
+  - name: Characters
+    uniqueID: 1008630139
+    locked: 0
+  - name: TowerBack
+    uniqueID: 2444420249
     locked: 0
