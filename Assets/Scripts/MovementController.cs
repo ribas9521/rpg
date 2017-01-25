@@ -6,7 +6,10 @@ public class MovementController : MonoBehaviour
     Animator anim;
     public float moveSpeed;
     public float attackRange;
+    public float attackSpeed;
     public float viewRange;
+    float attackTimer;
+
 
     GameObject nearEnemie;
     float h;
@@ -38,7 +41,7 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Walking();
+        attackTimer += Time.deltaTime;
         Direction();
         MoveDetection();
        
@@ -74,15 +77,17 @@ public class MovementController : MonoBehaviour
         {
             h = (oldX - curX) * -10;
             h = Mathf.Round(h * 10) / 10;
-
+            oldX = curX;
         }
-        if (curY != oldY)
+        else if (curY != oldY)
         {
             v = (oldY - curY) * -10;
             v = Mathf.Round(v * 10) / 10;
+            oldY = curY;
         }
-        oldX = curX;
-        oldY = curY;
+        
+       
+        
        
     }
 
@@ -121,24 +126,28 @@ public class MovementController : MonoBehaviour
 
     void Attack()
     {
-        if (direction == 0)
+        if (attackTimer >= attackSpeed)
         {
-            anim.SetTrigger("AttackFront");
+            attackTimer = 0;
+            if (direction == 0)
+            {
+                anim.SetTrigger("AttackFront");
 
-        }
-        if (direction == 1)
-        {
+            }
+            if (direction == 1)
+            {
 
-            anim.SetTrigger("AttackBack");
-        }
-        if (direction == 2)
-        {
+                anim.SetTrigger("AttackBack");
+            }
+            if (direction == 2)
+            {
 
-            anim.SetTrigger("AttackLeft");
-        }
-        if (direction == 3)
-        {
-            anim.SetTrigger("AttackRight");
+                anim.SetTrigger("AttackLeft");
+            }
+            if (direction == 3)
+            {
+                anim.SetTrigger("AttackRight");
+            }
         }
     }
 
