@@ -9,6 +9,6 @@ public class DamageController : MonoBehaviour {
     {
         StatusController enemieStatus = enemie.GetComponent<StatusController>();
         enemieStatus.hPoints -= (pAttack - pDefense);
-        Debug.Log(enemieStatus.hPoints);
+        
     }
 }

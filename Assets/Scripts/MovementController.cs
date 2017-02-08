@@ -19,17 +19,16 @@ public class MovementController : MonoBehaviour
     DamageController damageController;
     StatusController status;
     ParticleSystem particles;
-
+ 
 
     float oldX, oldY;
-    //front  = 0
-    //back   = 1
-    //right  = 2
-    //left   = 3
-
-    // Use this for initialization
+    
+ 
     void Awake()
     {
+
+        oldX = (float)System.Math.Round(transform.position.x, 0);
+        oldY = (float)System.Math.Round(transform.position.y, 0);
         anim = GetComponent<Animator>();
         pathfinding = GetComponent<Pathfinding>();
         damageController = GetComponent<DamageController>();
@@ -42,7 +41,7 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         attackTimer += Time.deltaTime;
-        Direction();
+        
         MoveDetection();
        
 
@@ -54,8 +53,7 @@ public class MovementController : MonoBehaviour
                 Attack();
         }
         else
-            pathfinding.Find(viewRange);
-        Animate();
+            pathfinding.Find(viewRange);        
         ClampPosition();
 
     }
@@ -71,83 +69,47 @@ public class MovementController : MonoBehaviour
     void MoveDetection()
     {
         float curX, curY;
-        curX = transform.position.x;
-        curY = transform.position.y;
+        curX = (float)System.Math.Round(transform.position.x, 0);
+        curY = (float)System.Math.Round(transform.position.y, 0);
         if (curX != oldX)
         {
-            h = (oldX - curX) * -10;
-            h = Mathf.Round(h * 10) / 10;
-            oldX = curX;
-        }
+            h = (float)System.Math.Round(oldX - curX, 0);
+            
+        }        
         else if (curY != oldY)
         {
-            v = (oldY - curY) * -10;
-            v = Mathf.Round(v * 10) / 10;
-            oldY = curY;
+            v = (float)System.Math.Round(oldY - curY, 0);
+            
         }
+        oldX = curX;
+        oldY = curY;
         
-       
-        
-       
+        Animate(h, v);
+
+
     }
 
     void GoTo(Transform target)
     {
-
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
     }
 
-    void Animate()
+    void Animate(float h, float v)
     {
-        anim.SetFloat("MoveX", h);
-        anim.SetFloat("MoveY", v);
+        anim.SetFloat("h", h);
+        anim.SetFloat("v", v);
     }
 
-    void Direction()
-    {
-        if (v <= -0.1f)
-        {
-            direction = 0;
-        }
-        if (v >= 0.1f)
-        {
-            direction = 1;
-        }
-        if (h >= 0.1f)
-        {
-            direction = 3;
-        }
-        if (h <= -0.1f)
-        {
-            direction = 2;
-        }
-
-    }
+   
 
     void Attack()
     {
         if (attackTimer >= attackSpeed)
         {
             attackTimer = 0;
-            if (direction == 0)
-            {
-                anim.SetTrigger("AttackFront");
 
-            }
-            if (direction == 1)
-            {
-
-                anim.SetTrigger("AttackBack");
-            }
-            if (direction == 2)
-            {
-
-                anim.SetTrigger("AttackLeft");
-            }
-            if (direction == 3)
-            {
-                anim.SetTrigger("AttackRight");
-            }
+            anim.SetTrigger("Attack");
+            
         }
     }
 
@@ -159,6 +121,4 @@ public class MovementController : MonoBehaviour
             damageController.TakeDamage(pathfinding.targetObject, status.pAttack, status.mAttack, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
     }
-
-
 }

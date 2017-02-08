@@ -10,14 +10,16 @@ public class MonsterMovement : MonoBehaviour {
     StatusController status;
     public GameObject slider;
     GameObject healthBar;
-    ParticleSystem particles;
+    //ParticleSystem particles;
+    public bool isTouched;
+    float halfMoveSpeed;
 
-    //0 =north
-    //1 =south
     void Awake () {
         status = GetComponent<StatusController>();
         healthBar = Instantiate(slider) as GameObject;
-        particles = transform.FindChild("DeathParticles").GetComponent<ParticleSystem>();
+        //particles = transform.FindChild("DeathParticles").GetComponent<ParticleSystem>();
+        isTouched = false;
+        halfMoveSpeed = moveSpeed / 2;
 
 
         if (transform.position.y > 0)
@@ -58,7 +60,7 @@ public class MonsterMovement : MonoBehaviour {
         
         Die();
         SliderControl();
-        particles.Play();
+        //particles.Play();
     }
 
     void SliderControl()
@@ -95,11 +97,17 @@ public class MonsterMovement : MonoBehaviour {
 
     void Die()
     {
-        if (status.hPoints <= 0)
-        {            
-            Destroy(gameObject);
-           
+
+        if(status.hPoints <= 0)
+        {
+            moveSpeed = halfMoveSpeed;
         }
+        if (status.hPoints <= 0 && isTouched == true)
+        {            
+            Destroy(gameObject);           
+        }
+        
+        
     }
 
     void OnDestroy()
