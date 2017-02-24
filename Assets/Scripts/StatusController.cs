@@ -12,8 +12,9 @@ public class StatusController : MonoBehaviour
     public float pDefense;
     [Range(0.0f, 10.0f)]
     public float mDefense;
-    [Range(0.0f, 10.0f)]
+    [Range(0.0f, 100.0f)]
     public float hPoints;
+    public float maxHPoints;
     [Range(0.0f, 10.0f)]
     public float mPoints;
     [Range(0.0f, 10.0f)]
@@ -26,5 +27,12 @@ public class StatusController : MonoBehaviour
     public float accuracy;
     [Range(0.0f, 10.0f)]
     public float blockChance;
+    [Range(0.0f, 100.0f)]
+    public float reward;
+
+    private void Awake()
+    {
+        maxHPoints = hPoints;
+    }
 
 }

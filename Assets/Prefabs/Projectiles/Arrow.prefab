@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   viewRange: 20
+  damage: 2
 --- !u!114 &114000014113098254
 MonoBehaviour:
   m_ObjectHideFlags: 1

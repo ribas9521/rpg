@@ -12,14 +12,21 @@ public class MonsterMovement : MonoBehaviour {
     GameObject healthBar;
     //ParticleSystem particles;
     public bool isTouched;
+    bool wasKilled;
     float halfMoveSpeed;
+    ColorController colorController;
+    GameController gameController;
+    
 
     void Awake () {
         status = GetComponent<StatusController>();
         healthBar = Instantiate(slider) as GameObject;
+        colorController = GetComponent<ColorController>();
         //particles = transform.FindChild("DeathParticles").GetComponent<ParticleSystem>();
         isTouched = false;
+        wasKilled = true;
         halfMoveSpeed = moveSpeed / 2;
+        gameController = GameObject.Find("GameMananger").GetComponent<GameController>();
 
 
         if (transform.position.y > 0)
@@ -80,39 +87,48 @@ public class MonsterMovement : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {       
         if (other.name == "Point1")        
-            reachedPoint = 1;        
-        
+            reachedPoint = 1;       
         if (other.name == "Point2")
-            reachedPoint = 2;
-        if (other.name == "Point3")
-            Destroy(gameObject);
+            reachedPoint = 2;       
         if (other.name == "Point4")
             reachedPoint = 4;
         if (other.name == "Point5")
             reachedPoint = 5;
-        if (other.name == "Point6")
+        if (other.name == "Crystal")
+        {
+            wasKilled = false;
             Destroy(gameObject);
+        }       
               
     }
 
     void Die()
     {
-
-        if(status.hPoints <= 0)
+        if(status.hPoints <= status.maxHPoints * 0.3f)
         {
+            colorController.injured = true;
             moveSpeed = halfMoveSpeed;
+            gameObject.layer = 9;
         }
-        if (status.hPoints <= 0 && isTouched == true)
+        if (status.hPoints <= 0 )
         {            
             Destroy(gameObject);           
-        }
-        
+        }       
         
     }
 
+    public void touchKill()
+    {
+        if(status.hPoints <= status.maxHPoints * 0.3f)
+        {            
+            status.reward += status.reward * 0.5f;
+            Destroy(gameObject);
+        }
+    }
     void OnDestroy()
     {
-        
+        if(wasKilled)
+        gameController.UpdateScore((int)status.reward);     
         Destroy(healthBar);
     }
 }

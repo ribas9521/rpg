@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour
     DamageController damageController;
     StatusController status;
     ParticleSystem particles;
+    TouchController touchController;
  
 
     float oldX, oldY;
@@ -34,6 +35,7 @@ public class MovementController : MonoBehaviour
         damageController = GetComponent<DamageController>();
         status = GetComponent<StatusController>();
         particles = transform.FindChild("Sparks").GetComponent<ParticleSystem>();
+        touchController = GetComponent<TouchController>();
 
     }
 
@@ -43,7 +45,7 @@ public class MovementController : MonoBehaviour
         attackTimer += Time.deltaTime;
         
         MoveDetection();
-       
+        manualWalking();
 
         if (pathfinding.targetObject != null)
         {
@@ -69,16 +71,16 @@ public class MovementController : MonoBehaviour
     void MoveDetection()
     {
         float curX, curY;
-        curX = (float)System.Math.Round(transform.position.x, 0);
-        curY = (float)System.Math.Round(transform.position.y, 0);
+        curX = (float)System.Math.Round(transform.position.x, 1);
+        curY = (float)System.Math.Round(transform.position.y, 1);
         if (curX != oldX)
         {
-            h = (float)System.Math.Round(oldX - curX, 0);
+            h = (float)System.Math.Round(oldX - curX, 1);
             
         }        
         else if (curY != oldY)
         {
-            v = (float)System.Math.Round(oldY - curY, 0);
+            v = (float)System.Math.Round(oldY - curY, 1);
             
         }
         oldX = curX;
@@ -86,7 +88,23 @@ public class MovementController : MonoBehaviour
         
         Animate(h, v);
 
-
+    }
+    void manualWalking()
+    {
+        GameObject touched = touchController.TouchedObject();
+        if (touched != null)
+        {
+            if (touched.tag == "Monster")
+            {
+                touched.GetComponent<ColorController>().selected = true;
+                if (touched.GetComponent<StatusController>().hPoints > 0)
+                {
+                    pathfinding.targetObject = touched;
+                }
+                
+            }
+        }
+      
     }
 
     void GoTo(Transform target)
@@ -99,7 +117,6 @@ public class MovementController : MonoBehaviour
         anim.SetFloat("h", h);
         anim.SetFloat("v", v);
     }
-
    
 
     void Attack()

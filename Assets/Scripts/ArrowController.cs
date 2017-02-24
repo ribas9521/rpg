@@ -6,6 +6,7 @@ public class ArrowController : MonoBehaviour {
     DamageController damageController;
     public float moveSpeed;
     public float viewRange;
+    public float damage;
     Quaternion lookRotation;
     Vector3 direction;
 
@@ -50,7 +51,7 @@ public class ArrowController : MonoBehaviour {
         {
             if (pathfinding.targetObject != null)
             {
-                damageController.TakeDamage(pathfinding.targetObject, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                damageController.TakeDamage(pathfinding.targetObject, damage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 SelfDestruction();
             }
         }

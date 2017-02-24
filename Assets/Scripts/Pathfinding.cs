@@ -27,21 +27,22 @@ public class Pathfinding : MonoBehaviour {
             {
                 if (Icol.gameObject.tag == target.tag)
                 {
-
-                    Idistance = Vector3.Distance(transform.position, Icol.transform.position);
-                    Ndistance = Vector3.Distance(transform.position, nearest.transform.position);
-                    if (Idistance < Ndistance)
+                    //layer 9 is ignored by pathfinding
+                    if (Icol.gameObject.layer != 9)
                     {
-                        nearest = Icol;
+                        Idistance = Vector3.Distance(transform.position, Icol.transform.position);
+                        Ndistance = Vector3.Distance(transform.position, nearest.transform.position);
+                        if (Idistance < Ndistance)
+                        {
+                            nearest = Icol;
+                        }
+
+                        if (nearest.tag == target.tag)
+                        {
+                            targetObject = nearest.gameObject;
+                        }
+
                     }
-
-                    if (nearest.tag == target.tag)
-                    {
-                        targetObject = nearest.gameObject;
-                        
-
-                    }
-
                 }
             }
         }
